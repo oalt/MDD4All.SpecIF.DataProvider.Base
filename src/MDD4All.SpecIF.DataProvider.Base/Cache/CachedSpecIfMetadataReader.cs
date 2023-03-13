@@ -334,5 +334,10 @@ namespace MDD4All.SpecIF.DataProvider.Base.Cache
 
             return result;
         }
+
+        public override void NotifyMetadataChanged()
+        {
+            ReinitializeCache();
+        }
     }
 }

@@ -54,5 +54,6 @@ namespace MDD4All.SpecIF.DataProvider.Base
         public abstract List<PropertyClass> GetAllPropertyClassRevisions(string propertyClassID);
         public abstract List<ResourceClass> GetAllResourceClassRevisions(string resourceClassID);
         public abstract List<StatementClass> GetAllStatementClassRevisions(string statementClassID);
+        public abstract void NotifyMetadataChanged();
     }
 }
