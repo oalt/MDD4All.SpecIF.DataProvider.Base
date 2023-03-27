@@ -1,0 +1,1 @@
+﻿Abstract base classes for SpecIF data providers.
