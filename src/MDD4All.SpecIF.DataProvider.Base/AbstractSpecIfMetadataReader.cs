@@ -3,6 +3,7 @@
  */
 using System.Collections.Generic;
 using MDD4All.SpecIF.DataModels;
+using MDD4All.SpecIF.DataModels.DiagramMetadata;
 using MDD4All.SpecIF.DataModels.Service;
 using MDD4All.SpecIF.DataProvider.Contracts;
 
@@ -55,5 +56,8 @@ namespace MDD4All.SpecIF.DataProvider.Base
         public abstract List<ResourceClass> GetAllResourceClassRevisions(string resourceClassID);
         public abstract List<StatementClass> GetAllStatementClassRevisions(string statementClassID);
         public abstract void NotifyMetadataChanged();
+        public abstract List<DiagramObjectClass> GetAllDiagramObjectClasses();
+        public abstract DiagramObjectClass GetDiagramObjectClassByKey(Key key);
+        public abstract List<DiagramObjectClass> GetAllDiagramObjectClassesRevisions(string classID);
     }
 }

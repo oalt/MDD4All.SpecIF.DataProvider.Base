@@ -1,4 +1,5 @@
 ﻿using MDD4All.SpecIF.DataModels;
+using MDD4All.SpecIF.DataModels.DiagramMetadata;
 using MDD4All.SpecIF.DataProvider.Contracts;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ namespace MDD4All.SpecIF.DataProvider.Base.Cache
         private static Dictionary<Key, PropertyClass> PropertyClassesCache = null;
         private static Dictionary<Key, ResourceClass> ResourceClassesCache = null;
         private static Dictionary<Key, StatementClass> StatementClassesCache = null;
+        private static Dictionary<Key, DiagramObjectClass> DiagramClassesCache = null;
 
         private static Dictionary<string, PropertyClass> RevisionlessPropertyClasses = null;
         private static Dictionary<string, ResourceClass> RevisionlessResourceClasses = null;
@@ -106,6 +108,15 @@ namespace MDD4All.SpecIF.DataProvider.Base.Cache
                     StatementClass latestStatementClass = StatementClassWithSameId.OrderBy(element => element.ChangedAt).ToList()[0];
                     RevisionlessStatementClasses.Add(statementClass.ID, latestStatementClass);
                 }
+            }
+
+            DiagramClassesCache = new Dictionary<Key, DiagramObjectClass>();
+
+            List<DiagramObjectClass> diagramObjectClasses = _metadataReader.GetAllDiagramObjectClasses();
+            foreach (DiagramObjectClass diagramObjectClass in diagramObjectClasses)
+            {
+                DiagramClassesCache.Add(new Key(diagramObjectClass.ID, diagramObjectClass.Revision), diagramObjectClass);
+
             }
         }
 
@@ -338,6 +349,49 @@ namespace MDD4All.SpecIF.DataProvider.Base.Cache
         public override void NotifyMetadataChanged()
         {
             ReinitializeCache();
+        }
+
+        public override List<DiagramObjectClass> GetAllDiagramObjectClasses()
+        {
+            List<DiagramObjectClass> result = new List<DiagramObjectClass>();
+
+            foreach (KeyValuePair<Key, DiagramObjectClass> keyValuePair in DiagramClassesCache)
+            {
+                result.Add(keyValuePair.Value);
+            }
+
+            return result;
+        }
+
+        public override DiagramObjectClass GetDiagramObjectClassByKey(Key key)
+        {
+            DiagramObjectClass result = null;
+
+            if (!string.IsNullOrEmpty(key.ID))
+            {
+                if (!string.IsNullOrEmpty(key.Revision))
+                {
+                    if (DiagramClassesCache.ContainsKey(key))
+                    {
+                        result = DiagramClassesCache[key];
+                    }
+
+                }
+                else
+                {
+                    //if (RevisionlessStatementClasses.ContainsKey(key.ID))
+                    //{
+                    //    result = RevisionlessStatementClasses[key.ID];
+                    //}
+                }
+            }
+
+            return result;
+        }
+
+        public override List<DiagramObjectClass> GetAllDiagramObjectClassesRevisions(string classID)
+        {
+            throw new NotImplementedException();
         }
     }
 }

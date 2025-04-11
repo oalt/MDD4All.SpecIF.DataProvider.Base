@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\MDD4All.SpecIF.DataModels.DiagramMetadata\src\MDD4All.SpecIF.DataModels.DiagramMetadata\MDD4All.SpecIF.DataModels.DiagramMetadata-dev.csproj" />
     <ProjectReference Include="..\..\..\MDD4All.SpecIF.DataProvider.Contracts\src\MDD4All.SpecIF.DataProvider.Contracts\MDD4All.SpecIF.DataProvider.Contracts-dev.csproj" />
   </ItemGroup>
 
