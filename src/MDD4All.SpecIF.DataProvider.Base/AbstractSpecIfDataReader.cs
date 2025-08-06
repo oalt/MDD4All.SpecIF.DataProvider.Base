@@ -31,5 +31,7 @@ namespace MDD4All.SpecIF.DataProvider.Base
         public abstract List<ProjectDescriptor> GetProjectDescriptions();
         public abstract Resource GetResourceByKey(Key key);
         public abstract Statement GetStatementByKey(Key key);
+
+        public abstract string GetProjectIDFromNodeID(string nodeID);
     }
 }

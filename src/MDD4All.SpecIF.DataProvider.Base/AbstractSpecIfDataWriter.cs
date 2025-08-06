@@ -156,6 +156,6 @@ namespace MDD4All.SpecIF.DataProvider.Base
         public abstract void AddProject(ISpecIfMetadataWriter metadataWriter, SpecIF.DataModels.SpecIF project, string integrationID = null);
         public abstract void UpdateProject(ISpecIfMetadataWriter metadataWriter, SpecIF.DataModels.SpecIF project);
         public abstract void DeleteProject(string projectID);
-        public abstract void DeleteNode(string nodeID);
+        public abstract void DeleteNode(string nodeID, string projectID);
     }
 }
