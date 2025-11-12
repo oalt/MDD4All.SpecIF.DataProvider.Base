@@ -117,7 +117,7 @@ namespace MDD4All.SpecIF.DataProvider.Base
                 foreach (Resource resource in project.Resources)
                 {
 
-                    AddResource(resource);
+                    AddResource(resource, projectID);
 
                 }
             }
@@ -126,7 +126,7 @@ namespace MDD4All.SpecIF.DataProvider.Base
             {
                 foreach (Statement statement in project.Statements)
                 {
-                    AddStatement(statement);
+                    AddStatement(statement, projectID);
 
                 }
             }
@@ -135,24 +135,24 @@ namespace MDD4All.SpecIF.DataProvider.Base
             {
                 foreach (Node data in project.Hierarchies)
                 {
-                    AddHierarchy(data);
+                    AddHierarchy(data, projectID);
                 }
             }
         }
 
         public abstract void InitializeIdentificators();
         public abstract void SaveIdentificators();
-        public abstract Node UpdateHierarchy(Node hierarchyToUpdate, string parentID = null, string predecessorID = null);
+        public abstract Node UpdateHierarchy(Node hierarchyToUpdate, string parentID = null, string predecessorID = null, string projectID = null);
         public abstract Resource SaveResource(Resource resource, string projectID = null);
         public abstract Statement SaveStatement(Statement statement, string projectID = null);
 
         public abstract void AddHierarchy(Node hierarchy, string projectID = null);
-        public abstract void AddResource(Resource resource);
-        public abstract void AddStatement(Statement statement);
-        public abstract void AddNodeAsFirstChild(string parentNodeID, Node newNode);
-        public abstract void AddNodeAsPredecessor(string predecessorID, Node newNode);
-        public abstract void MoveNode(string nodeID, string newParentID, string newSiblingId);
-        public abstract Resource UpdateResource(Resource resource);
+        public abstract void AddResource(Resource resource, string projectID = null);
+        public abstract void AddStatement(Statement statement, string projectID = null);
+        public abstract void AddNodeAsFirstChild(string parentNodeID, Node newNode, string projectID = null);
+        public abstract void AddNodeAsPredecessor(string predecessorID, Node newNode, string projectID = null);
+        public abstract void MoveNode(string nodeID, string newParentID, string newSiblingId, string projectID = null);
+        public abstract Resource UpdateResource(Resource resource, string projectID = null);
         public abstract void AddProject(ISpecIfMetadataWriter metadataWriter, SpecIF.DataModels.SpecIF project, string integrationID = null);
         public abstract void UpdateProject(ISpecIfMetadataWriter metadataWriter, SpecIF.DataModels.SpecIF project);
         public abstract void DeleteProject(string projectID);

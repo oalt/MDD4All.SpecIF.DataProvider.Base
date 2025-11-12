@@ -21,7 +21,7 @@ namespace MDD4All.SpecIF.DataProvider.Base
         public abstract List<Node> GetChildNodes(Key parentNodeKey);
         public abstract List<Node> GetContainingHierarchyRoots(Key resourceKey);
         public abstract byte[] GetFile(string filename);
-        public abstract Node GetHierarchyByKey(Key key);
+        public abstract Node GetHierarchyByKey(Key key, string projectID = null);
         public abstract string GetLatestHierarchyRevision(string hierarchyID);
         public abstract string GetLatestResourceRevisionForBranch(string resourceID, string branchName);
         public abstract string GetLatestStatementRevision(string statementID);
